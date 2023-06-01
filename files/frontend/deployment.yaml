@@ -1,0 +1,28 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: counter-frontend
+  labels:
+    app: counter-frontend
+    sandbox: counter-frontend
+    learn-kubernetes: counter-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: counter-frontend
+  template:
+    metadata:
+      labels:
+        app: counter-frontend
+    spec:
+      containers:
+        - name: counter-frontend
+          image: ghcr.io/neukomsimon/counter-frontend:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          env:
+            - name: npm_config_cache
+              value: ./.npm-cache  

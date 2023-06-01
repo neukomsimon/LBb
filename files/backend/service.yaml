@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: counter-backend
+    sandbox: counter_backend
+    learn-kubernetes: counter-backend
+  name: counter-backend
+spec:
+  ports:
+  - name: 10000-tcp
+    port: 10000
+    protocol: TCP
+    targetPort: 10000
+  - name: 8443-tcp
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
+  - name: 8778-tcp
+    port: 8778
+    protocol: TCP
+    targetPort: 8778
+  selector:
+    app: counter-backend
+  sessionAffinity: None
+  type: ClusterIP
